@@ -5,14 +5,14 @@
 ```
 +--- Note
     +--- APP
-        +---  BROWSER
+        +--- BROWSER
             +--- Chrome
             +--- Firefox
-        +---  IDE
+        +--- IDE
             +--- Notepad++
             +--- VSCode
             +--- trae.ai
-        +---  REMOTE
+        +--- REMOTE
             +--- VSCode ssh
             +--- mRemoteNG
             +--- WinSCP
