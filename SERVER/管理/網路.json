@@ -1,0 +1,96 @@
+[
+    {
+        "network_segment.id": "1",
+        "name": "bmc",
+        "cidr": "192.168.1.1/24",
+        "descript": "BMC網段",
+        "ips": [],
+        "acl_rules": [],
+        "vpn_rules": []
+    },
+    {
+        "network_segment.id": "2",
+        "name": "lan",
+        "cidr": "192.168.2.1/24",
+        "descript": "內網網段",
+        "ips": [
+            {
+                "ips.id": "1",
+                "network_segment.id(FK)": "2",
+                "ip": "192.168.1.1",
+                "name": "gateway"
+            },
+            {
+                "ips.id": "2",
+                "network_segment.id(FK)": "2",
+                "ip": "192.168.1.2",
+                "name": "dns"
+            },
+            {
+                "ips.id": "3",
+                "network_segment.id(FK)": "2",
+                "ip": "192.168.1.3",
+                "name": "server1"
+            }
+        ],
+        "acl_rules": [
+            {
+                "acl_rules.id": "3",
+                "name": "acl_rule_0",
+                "source_cidr": "192.168.1.0/24",
+                "dest_cidr": "192.168.2.1/32",
+                "dest_port": "80",
+                "protocol": "TCP",
+                "descript": "lan網段連接http://192.168.2.1:80"
+            }
+        ],
+        "vpn_rules": [
+            {
+                "vpn_rules.id": "3",
+                "network_segment.id(FK)": "2",
+                "name": "vpn_rule_0",
+                "ip": "192.168.1.3",
+                "port": "443",
+                "protocol": "TCP",
+                "role_groups": [
+                    {
+                        "role_groups.id": "1",
+                        "vpn_rules.id(FK)": "3",
+                        "name":"admin_group"
+                    },
+                    {
+                        "role_groups.id": "2",
+                        "vpn_rules.id(FK)": "3",
+                        "name":"user_group_1"
+                    }
+                ],
+                "role_users": [
+                    {
+                        "role_users.id": "1",
+                        "vpn_rules.id(FK)": "3",
+                        "name":"orange1"
+                    },
+                    {
+                        "role_users.id": "2",
+                        "vpn_rules.id(FK)": "3",
+                        "name":"orange1"
+                    },
+                    {
+                        "role_users.id": "3",
+                        "vpn_rules.id(FK)": "3",
+                        "name":"orange1"
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        "network_segment.id": "3",
+        "name": "wan",
+        "cidr": "192.168.3.1/24",
+        "descript": "外網網段",
+        "ips": [],
+        "acl_rules": [],
+        "vpn_rules": []
+    }
+]

@@ -1,0 +1,116 @@
+[
+    {
+        "machine_room.id": "machine_room_001",
+        "name": "國分1F",
+        "description": "",
+        "machine_room_rows": [
+            {
+                "id": "machine_room_rows_001",
+                "name": "第一排",
+                "machine_room.id(FK)": "machine_room_001",
+                "machine_room_cols": [
+                    {
+                        "id": "machine_room_cols_001",
+                        "name": "第一櫃",
+                        "machine_room_rows.id(FK)": "machine_room_rows_001",
+                        "servers": [
+                            {
+                                "id": "servers_001",
+                                "name": "HyperV-01",
+                                "rack_start": "40",
+                                "rack_end": "39",
+                                "spec": "DL380 G11",
+                                "description": "",
+                                "os": "HyperV-01",
+                                "machine_room_cols.id(FK)": "machine_room_cols_001",
+                                "cpus": [
+                                    {
+                                        "name": "cpu0",
+                                        "spec": "INTEL(R) XEON(R) CPU E5-2620 V4 @ 2.10GHz",
+                                        "cores": "32",
+                                        "threads": "64",
+                                        "description": "",
+                                        "servers.id(FK)": "servers_001"
+                                    },
+                                    {
+                                        "name": "cpu1",
+                                        "spec": "INTEL(R) XEON(R) CPU E5-2620 V4 @ 2.10GHz",
+                                        "cores": "32",
+                                        "threads": "64",
+                                        "description": "",
+                                        "servers.id(FK)": "servers_001"
+                                    }
+                                ],
+                                "server_gpus": [
+                                    {
+                                        "name": "gpu0",
+                                        "spec": "NVIDIA TESLA V100",
+                                        "vram:": "32GB",
+                                        "servers.id(FK)": "servers_001"
+                                    },
+                                    {
+                                        "name": "gpu1",
+                                        "spec": "NVIDIA RTX 2080TI",
+                                        "vram:": "11GB",
+                                        "servers.id(FK)": "servers_001"
+                                    }
+                                ],
+                                "server_rams": [
+                                    {
+                                        "name": "ram0",
+                                        "spec": "DDR4",
+                                        "hz": "2133",
+                                        "size": "32GB",
+                                        "description": "",
+                                        "servers.id(FK)": "servers_001"
+                                    },
+                                    {
+                                        "name": "ram1",
+                                        "spec": "DDR4",
+                                        "hz": "2133",
+                                        "size": "32GB",
+                                        "description": "",
+                                        "servers.id(FK)": "servers_001"
+                                    }
+                                ],
+                                "server_volumes": [
+                                    {
+                                        "name": "volume0",
+                                        "raid": "raid1",
+                                        "size": "1024GB",
+                                        "hdds": [{"size": "1024GB","spec": "980 PRO NVMe M.2","type": "SSD"},{"size": "1024GB","spec": "980 PRO NVMe M.2","type": "SSD"}]
+                                    }
+                                ],
+                                "server_nics": [
+                                    {
+                                        "mac": "00:00:00:00:00:00",
+                                        "ip": "10.10.10.1",
+                                        "description": "",
+                                        "servers.id(FK)": "servers_001",
+                                        "network_segment.id(FK)": "network_segment.id_lan"
+                                    },
+                                    {
+                                        "mac": "00:00:00:00:00:00",
+                                        "ip": "10.10.10.1",
+                                        "description": "",
+                                        "servers.id(FK)": "servers_001",
+                                        "network_segment.id(FK)": "network_segment.id_wan"
+                                    }
+                                ],
+                                "server_bmcs": [
+                                    {
+                                        "mac": "00:00:00:00:00:00",
+                                        "ip": "10.10.10.1",
+                                        "description": "",
+                                        "servers.id(FK)": "servers_001",
+                                        "network_segment.id(FK)": "network_segment.id_bmc"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+        ]
+    }
+]
