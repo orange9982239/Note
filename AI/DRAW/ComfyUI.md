@@ -45,6 +45,9 @@ cd "$env:USERPROFILE\Documents\github.com\ComfyUI"
 python main.py --listen 0.0.0.0
 ```
 
+# 進入comfyui web
+> 瀏覽器開 http://{ip}:8188
+
 # 模型下載
 ## civitai
 > * 下載時帶入token
