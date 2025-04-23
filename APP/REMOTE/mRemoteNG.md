@@ -3,12 +3,29 @@
 ## 安裝
 * https://mremoteng.org/
 
-## Putty 改配色
-1. 下載主題 https://github.com/AlexAkulov/putty-color-themes
-   1. 找喜歡的配色https://github.com/AlexAkulov/putty-color-themes/blob/master/images/readme.md
-   2. 下載reg
-2. 登入reg
+## Putty 美化
+1. 改配色
+	1. 下載配色檔案
+		1. 參考https://github.com/AlexAkulov/putty-color-themes/blob/master/images/readme.md
+            > * 推薦
+            > * `28. Monokai Dimmed.reg`
+		2. 下載REG 
+	2. 登入REG
+	3. 改配色需要`關掉整個mRemoteng後打開`才能套用到putty
+2. 改字
+	1. 讀取設定
+		1. 工具 > 選項
+		2. 進階 > 啟動PuTTY
+		3. Session > Default Setting > Load
+	2. 編輯字體及大小
+		* Windows > Apperance > Font Settings > Change...
+          > - 推薦配置 
+          >   * Cascadia Mono 
+          >   * 14
+	3. 儲存設定
+		* Session > Default Setting > Save
 3. 測試顏色
+   > 開個帶有bash的ssh連線做測試
     ```sh
     printf "          "
     for b in 0 1 2 3 4 5 6 7; do printf "  4${b}m "; done
