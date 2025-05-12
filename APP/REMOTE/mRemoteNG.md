@@ -67,7 +67,7 @@
     * WinSCP_SFTP
   * 檔案名稱
     * WinSCP的路徑
-    * C:\Users\orange9982239\AppData\Local\Programs\WinSCP\WinSCP.exe
+    * %USERPROFILE%\AppData\Local\Programs\WinSCP\WinSCP.exe
   * 引數
     > 若連間異常!Password改Password
     * sftp://%Username%:%!Password%@%Hostname%:%Port%
