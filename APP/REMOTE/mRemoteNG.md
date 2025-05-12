@@ -43,16 +43,36 @@
     ```
 
 ## Filezilla 整合
-* 顯示名稱
-  * SFTP
-* 檔案名稱
-  * filezilla.exe的路徑
-  * D:\0.software\2.portable\FileZilla-3.66.4\filezilla.exe
-* 引數
-  * sftp://%Username%:%Password%@%Hostname%:22%Userfield%
-  * [若連間異常Password改!Password]sftp://%Username%:%!Password%@%Hostname%:22%Userfield% 
-* V
+1. 安裝`Filezilla`
+    > 官網下載安裝
+2. mRemoteNG外部工具整合
+  * 顯示名稱
+    * FILEZILLA_SFTP
+  * 檔案名稱
+    * filezilla.exe的路徑
+    * D:\0.software\2.portable\FileZilla-3.66.4\filezilla.exe
+  * 引數
+    > 若連間異常Password改!Password
+    * sftp://%Username%:%Password%@%Hostname%:22%Userfield%
   * 合整試嘗
+    * V
+
+## WinSCP 整合
+1. 安裝`WinSCP`
+    ```ps1
+    winget install -e --id WinSCP.WinSCP
+    ```
+2. mRemoteNG外部工具整合
+  * 顯示名稱
+    * WinSCP_SFTP
+  * 檔案名稱
+    * WinSCP的路徑
+    * C:\Users\orange9982239\AppData\Local\Programs\WinSCP\WinSCP.exe
+  * 引數
+    > 若連間異常!Password改Password
+    * sftp://%Username%:%!Password%@%Hostname%:%Port%
+  * 合整試嘗
+    * V
 
 ## 大量編輯xml
 1. 拉資料夾，製作`連線範本`
