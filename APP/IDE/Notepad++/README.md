@@ -13,9 +13,8 @@ winget install notepad++
 ## 以資料夾開啟工作區
 1. 設定SYSTEM PATH`notepad++.exe`
     * PATH增加`C:\Program Files\Notepad++`
-2. 
-
-```ps1
-notepad++ -openFoldersAsWorkspace "folder_dir_path"
-# notepad++ -openFoldersAsWorkspace C:\Users\orange9982239\Documents\github.com\Note\APP
-```
+2. 以資料夾開啟
+    ```ps1
+    notepad++ -openFoldersAsWorkspace "folder_dir_path"
+    # notepad++ -openFoldersAsWorkspace C:\Users\orange9982239\Documents\github.com\Note\APP
+    ```
