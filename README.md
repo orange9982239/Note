@@ -12,12 +12,19 @@
             +--- Notepad++
             +--- VSCode
             +--- trae.ai
+        +--- MONITER
+            +--- README.md
+            +--- LibreNMS
+            +--- Zabbix
+            +--- Grafana
+                +--- InfluxDB
+                    +--- telegraf
+                +--- Prometheus
+                    +--- exporter
+        +--- MOUNT
         +--- REMOTE
             +--- VSCode ssh
             +--- mRemoteNG
-            +--- WinSCP
-            +--- FileZilla
-        +---  REMOTE
     +--- LEET_CODE
         +--- Array 
         +--- Linkl Lists
@@ -44,9 +51,9 @@
             +--- pipenv
             +--- conda
         +--- c#
-            dotnet
+            +--- dotnet
         +--- javascript
-            hexo
+            +--- hexo
         +--- powershell
         +--- shell
             +--- git
