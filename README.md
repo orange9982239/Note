@@ -4,6 +4,16 @@
 ## 資料夾結構
 ```
 +--- Note
+    +--- AI
+        +--- DATA_LABEL
+            +--- LabelImg.md
+        +--- DRAW
+            +--- ComfyUI.md
+        +--- GAN
+            +--- stylegan2-ada.md
+            +--- stylegan3.md
+        +--- OBJECT_DETECTION
+            +--- YOLOv8.md
     +--- APP
         +--- BROWSER
             +--- Chrome
