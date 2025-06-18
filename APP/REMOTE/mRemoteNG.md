@@ -63,16 +63,28 @@
     winget install -e --id WinSCP.WinSCP
     ```
 2. mRemoteNG外部工具整合
-  * 顯示名稱
-    * WinSCP_SFTP
-  * 檔案名稱
-    * WinSCP的路徑
-    * %USERPROFILE%\AppData\Local\Programs\WinSCP\WinSCP.exe
-  * 引數
-    > 若連間異常!Password改Password
-    * sftp://%Username%:%!Password%@%Hostname%:%Port%
-  * 合整試嘗
-    * V
+  * SFTP
+    * 顯示名稱
+      * WinSCP_SFTP
+    * 檔案名稱
+      * WinSCP的路徑
+      * %USERPROFILE%\AppData\Local\Programs\WinSCP\WinSCP.exe
+    * 引數
+      > 若連間異常!Password改Password
+      * sftp://%Username%:%!Password%@%Hostname%:%Port%
+    * 選項V
+      * 等待結束
+  * FTP
+    * 顯示名稱
+      * WinSCP_FTP
+    * 檔案名稱
+      * WinSCP的路徑
+      * %USERPROFILE%\AppData\Local\Programs\WinSCP\WinSCP.exe
+    * 引數
+      > 若連間異常!Password改Password
+      * ftp://%Username%:%!Password%@%Hostname%:%Port%
+    * 選項V
+      * 等待結束
 
 ## 大量編輯xml
 1. 拉資料夾，製作`連線範本`
