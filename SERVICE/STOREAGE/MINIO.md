@@ -13,11 +13,11 @@ services:
       - 9001:9001    # 管理端口
     command: server /data --console-address ':9001' --address ':9000'
     environment:
-      MINIO_ROOT_USER: <<minioaccount>>                 #管理后台用户名
-      MINIO_ROOT_PASSWORD: <<miniopassword>>            #管理后台密码，最小8个字符
+      MINIO_ROOT_USER: <<minioaccount>>                 # 管理後台用戶名
+      MINIO_ROOT_PASSWORD: <<miniopassword>>            # 管理後台密碼，最小8個字符
     volumes:
-      - /srv/minio/data:/data                           #映射当前目录下的data目录至容器内/data目录
-      - /srv/minio/config:/root/.minio/                 #映射配置目录
+      - /srv/minio/data:/data                           # 映射當前目錄下的data目錄至容器內/data目錄
+      - /srv/minio/config:/root/.minio/                 # 映射配置目錄
 ```
 ### 掛載SMB
 ```yaml

@@ -63,16 +63,110 @@
     winget install -e --id WinSCP.WinSCP
     ```
 2. mRemoteNG外部工具整合
-  * 顯示名稱
-    * WinSCP_SFTP
-  * 檔案名稱
-    * WinSCP的路徑
-    * %USERPROFILE%\AppData\Local\Programs\WinSCP\WinSCP.exe
-  * 引數
-    > 若連間異常!Password改Password
-    * sftp://%Username%:%!Password%@%Hostname%:%Port%
-  * 合整試嘗
-    * V
+  * SFTP
+    * 顯示名稱
+      * WinSCP_SFTP
+    * 檔案名稱
+      * WinSCP的路徑
+      * %USERPROFILE%\AppData\Local\Programs\WinSCP\WinSCP.exe
+    * 引數
+      > 若連間異常!Password改Password
+      * sftp://%Username%:%!Password%@%Hostname%:%Port%
+    * 選項V
+      * 等待結束
+  * FTP
+    * 顯示名稱
+      * WinSCP_FTP
+    * 檔案名稱
+      * WinSCP的路徑
+      * %USERPROFILE%\AppData\Local\Programs\WinSCP\WinSCP.exe
+    * 引數
+      > 若連間異常!Password改Password
+      * ftp://%Username%:%!Password%@%Hostname%:%Port%
+    * 選項V
+      * 等待結束
+
+## Edge 整合
+  * HTTP
+    * 顯示名稱
+      * Edge_http
+    * 檔案名稱
+      * C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe
+    * 引數
+      * --inprivate http://%Hostname%:%Port%
+  * Edge_https
+    * 顯示名稱
+      * Edge_http
+    * 檔案名稱
+      * C:\Program Files (x86)\Microsoft\Edge\Application\msedge.exe
+    * 引數
+      * --inprivate https://%Hostname%:%Port%
+
+## Puppteer+Edge 整合
+1. puppteer安裝
+  ```ps1
+  winget install OpenJS.NodeJS.LTS
+  npm install puppeteer-core
+  ```
+1. js腳本
+  > C:\tmp\mRemoteNG-puppteer-edge-https-login.js
+  ```js
+  const puppeteer = require('puppeteer-core');
+
+  // 取得命令列參數
+  let [,, url, username, password] = process.argv;
+
+  (async () => {
+    const edgePath = 'C:\\Program Files (x86)\\Microsoft\\Edge\\Application\\msedge.exe';
+
+    const browser = await puppeteer.launch({
+      executablePath: edgePath,
+      headless: false,
+      args: ['--inprivate', '--start-maximized']
+    });
+
+    // 取得第一個 incognito context 並在其中開新頁面
+    const context = browser.defaultBrowserContext();
+    const pages = await browser.pages();
+    const page = pages.length > 0 ? pages[0] : await browser.newPage();
+
+    // 設定視窗大小為全螢幕
+    await page.setViewport();
+    // 關閉js alert視窗
+    page.on('dialog', async dialog => {
+      console.log('Dialog message:', dialog.message());
+      await dialog.accept();
+    });
+    await page.goto(url);
+
+    try {
+      switch (true) {
+        case url.includes('your-website.com'):
+          // 根據網站的登入表單結構填寫
+          await page.type('input[id="Login1_UserName"]', username);
+          await page.type('input[id="Login1_Password"]', password);
+          await page.click('#Login1_LoginButton');
+          break;
+        default:
+          break;
+      }
+      await page.waitForNavigation();
+    } catch (error) {
+      console.log(error);
+      console.error('無法找到登入表單，請檢查網址或手動登入。');
+      // 登入後自動關閉
+      // await browser.close();                                 
+      return;
+    }
+  })();
+  ```
+1. 外部工具
+  * puppteer-edge-http
+    node
+    C:\tmp\mRemoteNG-puppteer-edge-https-login.js "http://%Hostname%:%Port%" "%Username%" "%!Password%"
+  * puppteer-edge-https
+    node
+    C:\tmp\mRemoteNG-puppteer-edge-https-login.js "https://%Hostname%" "%Username%" "%!Password%"
 
 ## 大量編輯xml
 1. 拉資料夾，製作`連線範本`
