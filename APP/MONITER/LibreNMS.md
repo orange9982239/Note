@@ -69,7 +69,7 @@
         1. web
             > http port 80
         2. db
-            > mssql port 3306
+            > mysql port 3306
     5. 參考
         > https://blog.jks.coffee/setup-librenms-using-docker/
 ## 設定
@@ -81,7 +81,11 @@
             1. snmp service安裝
                 ```ps1
                 # 安裝 SNMP 服務功能
+                # 適用於Windows Server
                 Install-WindowsFeature -Name "SNMP-Service" -IncludeManagementTools
+
+                # 適用於 Windows 10/11
+                Add-WindowsCapability -Online -Name "SNMP.Client~~~~0.0.1.0"
 
                 # 啟動 SNMP 服務
                 Start-Service -Name "SNMP"
@@ -89,12 +93,23 @@
                 # 設置 SNMP 服務為自動啟動
                 Set-Service -Name "SNMP" -StartupType Automatic
                 ```
-            2. 防火牆
+            2. 安裝informant-std-17.exe擴充snmp
+               * https://www.snmp-informant.com/downloads.htm
+            3. 防火牆
                1. 關閉或允許特定IP接收
+                  ```ps1
+                  New-NetFirewallRule -DisplayName "Allow SNMP Service" -Direction Inbound -Protocol UDP -LocalPort 161 -Action Allow
+                  ```
             3. 配置 SNMP community
                ```ps1
-                # 設置 SNMP 社群名稱 (例如 "home")
-                reg add "HKEY_LOCAL_MACHINE\SYSTEM\CurrentControlSet\Services\SNMP\Parameters\ValidCommunities" /v "home" /t REG_DWORD /d 4 /f
+               # 設置 SNMP 社群名稱 (例如 "home")
+               Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\SNMP\Parameters\ValidCommunities" -Name "home" -Value 4 -Type DWord
+
+               # 設置 SNMP 接收封包允許來自主機
+               Remove-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\SNMP\Parameters\PermittedManagers' -Name *
+
+               # 重啟snmp service
+               Restart-Service -Name snmp
                ```
          * linux
             1. snmp service安裝
