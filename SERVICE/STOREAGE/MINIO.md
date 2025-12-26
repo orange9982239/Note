@@ -45,23 +45,63 @@ volumes:
     * 檔案url   => http://192.168.0.1:9001/test/A13.pdf
 
 
-
-
+## nginx
+> 通常會用nginx掛fqdn名稱方便操作
+1. 管理
+  > minio-console.orange.home
+1. API
+  > minio.orange.home
 
 ## CLIENT
 ### 安裝mc
-1. 下載mc.exe
-2. 複製到 C:\Windows\System32
+1. 手動
+   1. 下載mc.exe
+   2. 複製到 C:\Windows\System32
+2. winget
+   ```ps1
+   winget install MinIO.Client
+   ```
+
 
 ## 設定
 ```sh
-mc config host add {serverAliasName} {URL} {ACC} {PW}
-mc config host add minio-server http://192.168.1.1:9000 #account# #password#
+# 建立alias
+mc alias set minio-orange http://minio.orange.home {ACCESS_KEY} {SECRET_KEY} --insecure
+
+# 測試連線
+mc ls minio-orange/my-bucket
 ```
 
-## 操作
-1. 列出所有桶
-```sh
-mc tree {serverAliasName}
-mc tree minio-server
-```
+
+## 限制access token權限
+1. server端配置
+  1. ui
+     1. 新增access token
+        > 自己保存，alias set會用到
+     2. 指定權限
+           ```json
+           {
+               "Version": "2012-10-17",
+               "Statement": [
+                   {
+                       "Effect": "Allow",
+                       "Action": [
+                           "s3:GetBucketLocation",
+                           "s3:ListBucket"
+                       ],
+                       "Resource": [
+                           "arn:aws:s3:::my-bucket"
+                       ]
+                   },
+                   {
+                       "Effect": "Allow",
+                       "Action": [
+                           "s3:GetObject"
+                       ],
+                       "Resource": [
+                           "arn:aws:s3:::my-bucket/*"
+                       ]
+                   }
+               ]
+           }
+           ```
